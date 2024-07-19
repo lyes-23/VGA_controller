@@ -1,0 +1,178 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity vsync is
+    port(
+        start, reset, clk, end_of_line: in std_logic;
+        v_sync, display_v_en: out std_logic;
+        y: out std_logic_vector(11 downto 0)
+    );
+end vsync;
+
+architecture behavioral of vsync is 
+signal Ec: std_logic; 
+signal Rc: std_logic;
+signal CE479, CE2, CE31, CE10: std_logic;
+signal v_counter : std_logic_vector(11 downto 0);
+
+type state is (init, display, fp, sync, bp);
+signal etat : state := init;
+signal etat_f : state;
+
+begin
+    P1: process(clk)
+    begin
+        if rising_edge(clk) then 
+            etat <= etat_f;
+        end if;
+        if reset = '1' then 
+            etat <= init;
+        end if;
+    end process P1;
+
+    P2: process(etat)
+    begin
+        if etat = init then 
+            v_sync <= '1';
+            display_v_en <= '0';
+        elsif etat = display then 
+            v_sync <= '1';
+            display_v_en <= '1';
+        elsif etat = fp then 
+            v_sync <= '1';
+            display_v_en <= '0';
+        elsif etat = sync then 
+            v_sync <= '0';
+            display_v_en <= '0';
+        elsif etat = bp then 
+            v_sync <= '1';
+            display_v_en <= '0';
+        else
+            v_sync <= '1';
+            display_v_en <= '0';
+        end if;
+    end process P2;
+
+    P3: process(start, CE479, CE2, CE31, CE10, etat)
+    begin
+        case etat is
+            when init =>
+                if start = '0' then
+                    Ec <= '0';
+                    Rc <= '1';
+                    etat_f <= init;
+                elsif start = '1' then
+                    Ec <= '0';
+                    Rc <= '1';
+                    etat_f <= display; 
+                else
+                    Ec <= '0';
+                    Rc <= '1';
+                    etat_f <= init;
+                end if; 
+            when display =>
+                if CE479 = '0' then
+                    Ec <= '1';
+                    Rc <= '0';
+                    etat_f <= etat;
+                elsif CE479 = '1' then
+                    Ec <= '0';
+                    Rc <= '1';
+                    etat_f <= fp;
+                else 
+                    Ec <= '0';
+                    Rc <= '1';
+                    etat_f <= etat;
+                end if; 
+            when fp =>
+                if CE2 = '0' then
+                    Ec <= '1';
+                    Rc <= '0';
+                    etat_f <= etat;
+                elsif CE2 = '1' then
+                    Ec <= '0';
+                    Rc <= '1';
+                    etat_f <= sync;
+                else 
+                    Ec <= '0';
+                    Rc <= '1';
+                    etat_f <= etat;
+                end if; 
+            when sync =>
+                if CE31 = '0' then
+                    Ec <= '1';
+                    Rc <= '0';
+                    etat_f <= etat;
+                elsif CE31 = '1' then
+                    Ec <= '0';
+                    Rc <= '1';
+                    etat_f <= bp;
+                else 
+                    Ec <= '0';
+                    Rc <= '1';
+                    etat_f <= etat;
+                end if;  
+            when bp =>
+                if CE10 = '0' then
+                    Ec <= '1';
+                    Rc <= '0';
+                    etat_f <= etat;
+                elsif CE10 = '1' then
+                    Ec <= '0';
+                    Rc <= '1';
+                    etat_f <= init;
+                else 
+                    Ec <= '0';
+                    Rc <= '1';
+                    etat_f <= etat;
+                end if;  
+        end case; 
+    end process P3;
+
+    v_counter_process: process(clk, Ec, Rc, end_of_line)
+        variable cmp : integer;
+    begin 
+        if rising_edge(clk) then 
+            if Rc = '1' then 
+                cmp := 0; 
+            elsif Ec = '1' then 
+                if end_of_line = '1' then
+                    cmp := cmp + 1; 
+                end if;
+            end if; 
+            if etat = display then 
+                y <= std_logic_vector(to_unsigned(cmp, 12));
+            else
+                y <= std_logic_vector(to_unsigned(0, 12));
+            end if;
+        end if; 
+
+        if cmp = 479 then 
+            CE479 <= '1'; 
+        else 
+            CE479 <= '0'; 
+        end if; 
+
+        if cmp = 2 then 
+            CE2 <= '1'; 
+        else 
+            CE2 <= '0'; 
+        end if; 
+
+        if cmp = 31 then 
+            CE31 <= '1'; 
+        else 
+            CE31 <= '0'; 
+        end if; 
+
+        if cmp = 10 then 
+            CE10 <= '1'; 
+        else 
+            CE10 <= '0'; 
+        end if; 
+
+        v_counter <= std_logic_vector(to_unsigned(cmp, 12));
+    end process v_counter_process;
+
+end behavioral;

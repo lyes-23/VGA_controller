@@ -1,0 +1,97 @@
+library ieee; 
+use ieee.std_logic_1164.all; 
+use ieee.numeric_std.all; 
+
+
+entity movement_control is 
+port(
+clk, reset: in std_logic;
+push_button_left, push_button_Right: in std_logic;
+x,y : in std_logic_vector(11 downto 0);
+x_stand,x_ball,y_ball: out std_logic_vector(11 downto 0)
+
+);
+end movement_control;
+
+architecture behave of movement_control is
+
+begin 
+
+
+ -- Process to control the stand's movement
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            x_stand <= (others => '0');
+        elsif rising_edge(clk) then
+            if push_button_left = '1' then
+                if to_integer(unsigned(x_stand)) > 0 then
+                    x_stand <= std_logic_vector(unsigned(x_stand) - 1);
+                end if;
+            elsif push_button_right = '1' then
+                if to_integer(unsigned(x_stand)) < 580 then
+                    x_stand <= std_logic_vector(unsigned(x_stand) + 1);
+                end if;
+            end if;
+        end if;
+    end process;
+
+    -- Process to control the ball's movement
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            x_ball <= (others => '0');
+            y_ball <= (others => '0');
+            x_ball_dir <= '1'; -- Initial direction
+            y_ball_dir <= '1'; -- Initial direction
+        elsif rising_edge(clk) then
+		  
+            -- Move the ball in the current direction
+            if x_ball_dir = '1' then
+                if to_integer(unsigned(x_ball)) < 580 then
+                    x_ball <= std_logic_vector(unsigned(x_ball) + 1);
+                else
+                    x_ball_dir <= '0'; -- Change direction
+                end if;
+            else
+                if to_integer(unsigned(x_ball)) > 0 then
+                    x_ball <= std_logic_vector(unsigned(x_ball) - 1);
+                else
+                    x_ball_dir <= '1'; -- Change direction
+                end if;
+            end if;
+
+            if y_ball_dir = '1' then
+                if to_integer(unsigned(y_ball)) < 440 then
+                    y_ball <= std_logic_vector(unsigned(y_ball) + 1);
+                else
+                    y_ball_dir <= '0'; -- Change direction
+                end if;
+            else
+                if to_integer(unsigned(y_ball)) > 0 then
+                    y_ball <= std_logic_vector(unsigned(y_ball) - 1);
+                else
+                    y_ball_dir <= '1'; -- Change direction
+                end if;
+            end if;
+
+            -- Check collision with stand
+            if to_integer(unsigned(y_ball)) = 460 and
+               to_integer(unsigned(x_ball)) >= to_integer(unsigned(x_stand)) and
+               to_integer(unsigned(x_ball)) < to_integer(unsigned(x_stand)) + 60 then
+					
+                y_ball_dir <= '1'; -- Ball bounces back
+            end if;
+
+            -- Check if ball hits the end of the screen
+            if to_integer(unsigned(y_ball)) = 2048 - 1 then
+                -- Game over logic, for now we reset the ball
+                x_ball <= (others => '0');
+                y_ball <= (others => '0');
+                x_ball_dir <= '1';
+                y_ball_dir <= '1';
+            end if;
+        end if;
+    end process;
+
+end behave;

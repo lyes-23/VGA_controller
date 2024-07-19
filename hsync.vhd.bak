@@ -1,0 +1,108 @@
+library ieee; 
+use ieee.std_logic_1164.all;
+
+entity hsync is
+port(
+start,reset: in std_logic;
+h_sync,display_h_en: out std_logic;
+x: out std_logic_vector(11 downto 0)
+);
+end hsync;
+
+
+architecture behavioral of hsync is 
+signal Ec: std_logic; 
+signal Rc: std_logic;
+
+type state is(init,display,fp,Sync,bp);
+signal etat : state := init;
+signal etat_f : state;
+
+begin
+
+P1: process(clk)
+begin
+
+if rising_edge(clk) then 
+	etat<= etat_f;
+end if ;
+if(reset = '1')then 
+	etat<= init;
+end if; 
+end process p1;
+
+P2: process(etat)
+begin
+
+if etat = init then 
+	Ec<= '';
+	rst<= '1';
+	
+	
+elsif etat = count1 then 
+	ES<= '1';
+	
+	rst<= '0';
+	
+elsif etat = count2  then 
+	ES<= '1';
+	rst<= '0'; 
+	
+elsif etat = count3  then 
+	ES<= '0';
+	rst<= '0';
+	
+	else
+	ES<= '0';
+	rst<= '0';
+	
+end if;
+
+end process P2;
+
+P3: process(start ,CE1,CE0, CE4, etat)
+begin
+case etat is
+
+when init => if start='0' then etat_f<= init;
+					elsif start = '1' and CE1= '1' then etat_f<= count1; 
+					else etat_f<= init;
+					end if; 
+					
+when count1 => if CE1='1'  then
+					EC<='0';
+					etat_f<= etat;
+				 elsif CE0='1'  then EC<='1';
+				 etat_f<=count3;
+				 else EC<='0';
+				 etat_f<= etat;
+				end if; 
+				
+when count3  => if CE1='1' and CE4='0' then 
+					  EC<='0';
+					  etat_f <= count1;
+					
+					 elsif CE4='1'  then EC<='0';
+					 etat_f <= init;
+					 
+					 elsif CE0='1' and CE4='0' then 
+					 EC<='0';
+					 etat_f<= count2;
+					 
+					else EC<='0';
+					etat_f<= etat;  
+					end if; 
+					
+					
+when count2 => if CE0='1'  then etat_f<= etat;
+										   EC<='0';
+				 elsif CE1='1'  then EC<='1';
+				 etat_f<=count3;
+				 else EC<='0';
+				 etat_f<= etat;
+				end if; 
+end case; 
+end process P3; 
+
+end behavioral;
+

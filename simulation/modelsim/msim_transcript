@@ -1,0 +1,62 @@
+# Reading C:/intelFPGA_lite/17.1/modelsim_ase/tcl/vsim/pref.tcl
+# do VGA_controller_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/17.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {C:/Users/TRETEC/Documents/Master_1/VHDL/VGA_controller/affiche_obj.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:08:26 on Jun 26,2024
+# vcom -reportprogress 300 -93 -work work C:/Users/TRETEC/Documents/Master_1/VHDL/VGA_controller/affiche_obj.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity affiche_obj
+# -- Compiling architecture behave of affiche_obj
+# End time: 14:08:26 on Jun 26,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {C:/Users/TRETEC/Documents/Master_1/VHDL/VGA_controller/simulation/modelsim/vga_controller.vht}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:08:26 on Jun 26,2024
+# vcom -reportprogress 300 -93 -work work C:/Users/TRETEC/Documents/Master_1/VHDL/VGA_controller/simulation/modelsim/vga_controller.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity vga_controller_vhd_tst
+# -- Compiling architecture vga_controller_arch of vga_controller_vhd_tst
+# End time: 14:08:26 on Jun 26,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  vga_controller_vhd_tst
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" vga_controller_vhd_tst 
+# Start time: 14:08:27 on Jun 26,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.vga_controller_vhd_tst(vga_controller_arch)
+# ** Warning: (vsim-3473) Component instance "i1 : vga_controller" is not bound.
+#    Time: 0 ps  Iteration: 0  Instance: /vga_controller_vhd_tst File: C:/Users/TRETEC/Documents/Master_1/VHDL/VGA_controller/simulation/modelsim/vga_controller.vht
+# 
+# add wave *
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: TRETEC  Hostname: DESKTOP-FH4MGCP  ProcessID: 18764
+#           Attempting to use alternate WLF file "./wlftdfbsir".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftdfbsir
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# Break key hit
+# Simulation stop requested.
+# End time: 14:21:54 on Jun 26,2024, Elapsed time: 0:13:27
+# Errors: 0, Warnings: 3

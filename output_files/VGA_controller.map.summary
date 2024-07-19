@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Thu Jun 27 22:05:09 2024
+Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Revision Name : VGA_controller
+Top-level Entity Name : top_level
+Family : MAX 10
+Total logic elements : 966
+    Total combinational functions : 966
+    Dedicated logic registers : 373
+Total registers : 373
+Total pins : 19
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 1
+UFM blocks : 0
+ADC blocks : 0

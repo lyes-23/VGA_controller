@@ -1,0 +1,197 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'vga_controller:vga_ctrl_inst|hsync:hsync_inst|etat.display'
+Slack : -12.105
+TNS   : -20.249
+
+Type  : Slow 1200mV 85C Model Setup 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : -9.938
+TNS   : -895.834
+
+Type  : Slow 1200mV 85C Model Setup 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -7.785
+TNS   : -239.390
+
+Type  : Slow 1200mV 85C Model Setup 'clk_50'
+Slack : 13.950
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -0.935
+TNS   : -1.250
+
+Type  : Slow 1200mV 85C Model Hold 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : 0.322
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'clk_50'
+Slack : 0.340
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'vga_controller:vga_ctrl_inst|hsync:hsync_inst|etat.display'
+Slack : 1.708
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -7.196
+TNS   : -394.383
+
+Type  : Slow 1200mV 85C Model Recovery 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : -3.436
+TNS   : -291.263
+
+Type  : Slow 1200mV 85C Model Removal 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : 3.310
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 5.337
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : -1.403
+TNS   : -169.763
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'vga_controller:vga_ctrl_inst|hsync:hsync_inst|etat.display'
+Slack : 0.411
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_50'
+Slack : 9.687
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.559
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'vga_controller:vga_ctrl_inst|hsync:hsync_inst|etat.display'
+Slack : -11.522
+TNS   : -19.332
+
+Type  : Slow 1200mV 0C Model Setup 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : -9.377
+TNS   : -840.886
+
+Type  : Slow 1200mV 0C Model Setup 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -6.838
+TNS   : -201.981
+
+Type  : Slow 1200mV 0C Model Setup 'clk_50'
+Slack : 14.383
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -1.110
+TNS   : -1.784
+
+Type  : Slow 1200mV 0C Model Hold 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : 0.289
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clk_50'
+Slack : 0.305
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'vga_controller:vga_ctrl_inst|hsync:hsync_inst|etat.display'
+Slack : 1.808
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -6.269
+TNS   : -343.427
+
+Type  : Slow 1200mV 0C Model Recovery 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : -3.068
+TNS   : -259.594
+
+Type  : Slow 1200mV 0C Model Removal 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : 3.047
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 4.637
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : -1.403
+TNS   : -169.763
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'vga_controller:vga_ctrl_inst|hsync:hsync_inst|etat.display'
+Slack : 0.447
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : 9.710
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.538
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'vga_controller:vga_ctrl_inst|hsync:hsync_inst|etat.display'
+Slack : -5.628
+TNS   : -9.200
+
+Type  : Fast 1200mV 0C Model Setup 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : -4.334
+TNS   : -358.846
+
+Type  : Fast 1200mV 0C Model Setup 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -3.522
+TNS   : -105.624
+
+Type  : Fast 1200mV 0C Model Setup 'clk_50'
+Slack : 17.295
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -0.583
+TNS   : -1.303
+
+Type  : Fast 1200mV 0C Model Hold 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : 0.140
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk_50'
+Slack : 0.148
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'vga_controller:vga_ctrl_inst|hsync:hsync_inst|etat.display'
+Slack : 0.373
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -3.403
+TNS   : -186.447
+
+Type  : Fast 1200mV 0C Model Recovery 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : -1.212
+TNS   : -101.248
+
+Type  : Fast 1200mV 0C Model Removal 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : 1.623
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 2.511
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'movement_control:movement_ctrl_inst|slow_clk'
+Slack : -1.000
+TNS   : -121.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'vga_controller:vga_ctrl_inst|hsync:hsync_inst|etat.display'
+Slack : 0.300
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : 9.463
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'PLL_frequency|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.590
+TNS   : 0.000
+
+------------------------------------------------------------

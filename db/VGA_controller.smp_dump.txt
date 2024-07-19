@@ -1,0 +1,16 @@
+
+State Machine - |top_level|vga_controller:vga_ctrl_inst|vsync:vsync_inst|etat
+Name etat.bp etat.sync etat.fp etat.display etat.init 
+etat.init 0 0 0 0 0 
+etat.display 0 0 0 1 1 
+etat.fp 0 0 1 0 1 
+etat.sync 0 1 0 0 1 
+etat.bp 1 0 0 0 1 
+
+State Machine - |top_level|vga_controller:vga_ctrl_inst|hsync:hsync_inst|etat
+Name etat.bp etat.Sync etat.fp etat.display etat.init 
+etat.init 0 0 0 0 0 
+etat.display 0 0 0 1 1 
+etat.fp 0 0 1 0 1 
+etat.Sync 0 1 0 0 1 
+etat.bp 1 0 0 0 1 

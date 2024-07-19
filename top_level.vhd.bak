@@ -1,0 +1,108 @@
+library ieee; 
+use ieee.std_logic_1164.all; 
+use ieee.numeric_std.all;  
+
+
+
+entity top_level is 
+port(
+clk: in std_logic ;
+start : in std_logic;
+reset : in std_logic;
+
+R,G,B: out std_logic_vector(3 downto 0 );
+
+h_sync : out std_logic;
+v_sync : out std_logic
+)
+end top_level; 
+
+
+
+architecture behave of top_level is 
+
+
+
+signal x, y : std_logic_vector(11 downto 0);
+signal disp_en : std_logic;
+signal x_ball, y_ball, x_stand, y_stand : std_logic_vector(11 downto 0); 
+
+component affiche_obj 
+port(
+x,y : in std_logic_vector(11 downto 0);
+disp_en: in std_logic; 
+
+--objects 
+x_ball, y_ball, x_stand : in std_logic_vector(11 downto 0);
+
+--- to the monitor 
+R,G,B: out std_logic_vector(3 downto 0 )
+); 
+end component; 
+
+
+
+component vga_controller 
+    port(
+        start : in std_logic;
+        reset : in std_logic;
+        clk : in std_logic;
+        h_sync : out std_logic;
+        v_sync : out std_logic;
+        display_en : out std_logic;
+        x : out std_logic_vector(11 downto 0);
+        y : out std_logic_vector(11 downto 0)
+    );
+end component;
+
+
+
+
+begin
+
+   
+    vga_ctrl_inst : vga_controller
+        port map (
+            start => start,
+            reset => reset,
+            clk => clk,
+            h_sync => h_sync,
+            v_sync => v_sync,
+            display_en => disp_en,
+            x => x,
+            y => y
+        );
+
+   
+    affiche_obj_inst : affiche_obj
+        port map (
+            x => x,
+            y => y,
+            disp_en => disp_en,
+            x_ball => x_ball,
+            y_ball => y_ball,
+            x_stand => x_stand,
+            R => R,
+            G => G,
+            B => B
+        );
+
+    
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            x_ball <= (others => '0');  -- Reset position
+            y_ball <= (others => '0');  -- Reset position
+            x_stand <= (others => '0'); -- Reset position
+            
+        elsif rising_edge(clk) then
+            if start = '1' then
+                -- Set initial positions (modify as needed)
+                x_ball <= "000000001100"; -- Example position for x_ball (e.g., 12)
+                y_ball <= "000000001100"; -- Example position for y_ball (e.g., 12)
+                x_stand <= "000000010000"; -- Example position for x_stand (e.g., 16)
+            end if;
+        end if;
+    end process;
+
+end behave;
